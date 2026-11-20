@@ -1,0 +1,45 @@
+W04-D02 - API TESTING REPORT
+============================
+
+TEST 1: GET STUDENT API
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.12.3
+Date: Thu, 19 Nov 2026 11:41:35 GMT
+Content-Type: application/json
+Content-Length: 120
+Connection: close
+
+{
+  "department": "Information Technology",
+  "name": "Maryam Noor",
+  "program": "DevSecOps Internship",
+  "week": 4
+}
+
+
+TEST 2: POST VALID MESSAGE
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.12.3
+Date: Thu, 19 Nov 2026 11:41:35 GMT
+Content-Type: application/json
+Content-Length: 70
+Connection: close
+
+{
+  "received_message": "Hello from Maryam!",
+  "status": "success"
+}
+
+
+TEST 3: POST INVALID MESSAGE
+HTTP/1.1 400 BAD REQUEST
+Server: Werkzeug/3.1.9 Python/3.12.3
+Date: Thu, 19 Nov 2026 11:41:35 GMT
+Content-Type: application/json
+Content-Length: 37
+Connection: close
+
+{
+  "error": "Message is required"
+}
+

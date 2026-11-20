@@ -1,0 +1,51 @@
+W04-D02 - WORKING WITH REST APIs
+================================
+
+Student: Maryam Noor
+Department: Information Technology
+Program: DevSecOps Internship
+
+OBJECTIVE
+Learn how applications communicate through REST APIs
+using Python Flask.
+
+1. API
+An API allows different software applications to
+communicate and exchange information.
+
+2. REST API
+A REST API uses HTTP methods to exchange information
+between clients and servers.
+
+3. GET METHOD
+GET retrieves information from a server.
+Endpoint: /api/student
+
+4. POST METHOD
+POST sends information to a server.
+Endpoint: /api/message
+
+5. JSON
+JSON stands for JavaScript Object Notation.
+It is a lightweight format used to exchange data.
+
+6. HTTP STATUS CODES
+200 OK: Request completed successfully.
+400 BAD REQUEST: Invalid input was rejected.
+404 NOT FOUND: Requested resource does not exist.
+500 INTERNAL SERVER ERROR: Server encountered an error.
+
+7. FLASK FUNCTIONS
+request.get_json() reads incoming JSON data.
+jsonify() creates a JSON response.
+@app.route() defines application endpoints.
+
+8. TESTING RESULTS
+GET /api/student: 200 OK
+POST /api/message: 200 OK
+POST with empty JSON: 400 BAD REQUEST
+
+CONCLUSION
+Successfully created and tested GET and POST API
+endpoints using Python Flask.
+Implemented JSON communication and input validation.

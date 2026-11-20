@@ -1,0 +1,73 @@
+W04-D03 - SQLITE DATABASE AND CRUD OPERATIONS
+=============================================
+
+OBJECTIVE
+Learn how Python stores and manages information using
+SQLite databases.
+
+1. WHAT IS A DATABASE?
+A database is an organized collection of information
+that can be stored, accessed, and managed.
+
+2. WHAT IS SQLITE?
+SQLite is a lightweight database system. It stores
+information in a single file and works with Python
+through the built-in sqlite3 module.
+
+3. WHAT IS A DATABASE TABLE?
+A table is a structure inside a database that stores
+related information in rows and columns.
+
+4. WHAT ARE ROWS AND COLUMNS?
+Rows represent individual records.
+Columns represent the different fields of information.
+
+5. WHAT IS A PRIMARY KEY?
+A primary key is a unique identifier for each record.
+In this project, the id column is the primary key.
+
+6. WHAT IS CRUD?
+CRUD represents four basic database operations:
+Create: Insert a new record.
+Read: Retrieve saved records.
+Update: Modify an existing record.
+Delete: Remove a record.
+
+7. WHY DO APPLICATIONS NEED DATABASES?
+Applications use databases to store information
+permanently, retrieve it later, and manage records.
+
+8. PROJECT IMPLEMENTATION
+Database: database/training.db
+Table: messages
+
+Columns:
+id - Unique record identifier.
+name - Name of the person.
+message - Message content.
+created_at - Date and time of record creation.
+
+9. CRUD TESTING RESULTS
+Create: Successfully inserted a message.
+Read: Successfully retrieved the message.
+Update: Successfully modified the message.
+Delete: Successfully deleted the message.
+Final Read: Empty list after deletion.
+
+10. DATABASE PERSISTENCE
+The SQLite database is stored as a file on disk.
+It remains available after the Python program finishes.
+Repeated tests confirmed that the database retained
+its record ID sequence between program runs.
+
+11. PARAMETERIZED QUERIES
+The project uses ? placeholders in SQL statements.
+Parameterized queries safely pass user-provided values
+to SQL commands and help prevent SQL injection.
+
+CONCLUSION
+Successfully created a SQLite database and messages
+table using Python.
+Implemented and tested all four CRUD operations.
+Learned how SQLite stores persistent information and
+how parameterized queries improve database security.
