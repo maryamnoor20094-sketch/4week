@@ -1,37 +1,57 @@
 
-const form = document.getElementById("contactForm");
-const responseMessage = document.getElementById("response");
+const contactForm = document.getElementById("contactForm");
 
-form.addEventListener("submit", async function (event) {
-    event.preventDefault();
+if (contactForm) {
+    contactForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-    const name = document.getElementById("name").value.trim();
-    const message = document.getElementById("message").value.trim();
+        const nameInput = document.getElementById("name");
+        const messageInput = document.getElementById("message");
+       const result = document.getElementById("response");
+        const name = nameInput.value.trim();
+        const message = messageInput.value.trim();
 
-    if (!name || !message) {
-        responseMessage.textContent = "Please complete all fields.";
-        return;
-    }
-
-    try {
-        const response = await fetch("/api/contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ name, message })
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-            throw new Error(result.error || "Submission failed.");
+        // Validate empty fields
+        if (!name || !message) {
+            result.textContent = "Please enter both name and message.";
+            return;
         }
 
-        responseMessage.textContent = result.message;
-        form.reset();
+        // Validate name length
+        if (name.length > 50) {
+            result.textContent = "Name must be 50 characters or fewer.";
+            return;
+        }
 
-    } catch (error) {
-        responseMessage.textContent = error.message;
-    }
-});
+        // Validate message length
+        if (message.length > 500) {
+            result.textContent = "Message must be 500 characters or fewer.";
+            return;
+        }
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    message: message
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Something went wrong.");
+            }
+
+            result.textContent = data.message;
+            contactForm.reset();
+
+        } catch (error) {
+            result.textContent = error.message;
+        }
+    });
+}

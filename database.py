@@ -1,16 +1,18 @@
+
+
 import sqlite3
 from pathlib import Path
 
-# Database location
+# Default database location
 DB_PATH = Path(__file__).parent / "database" / "training.db"
-
-# Create database folder if needed
-DB_PATH.parent.mkdir(exist_ok=True)
+DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
 # CREATE TABLE
-def create_table():
-    with sqlite3.connect(DB_PATH) as conn:
+def create_table(db_path=None):
+    path = db_path or DB_PATH
+
+    with sqlite3.connect(path) as conn:
         conn.execute("""
             CREATE TABLE IF NOT EXISTS messages (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,8 +25,10 @@ def create_table():
 
 
 # CREATE - Insert a message
-def add_message(name, message):
-    with sqlite3.connect(DB_PATH) as conn:
+def add_message(name, message, db_path=None):
+    path = db_path or DB_PATH
+
+    with sqlite3.connect(path) as conn:
         cursor = conn.execute(
             "INSERT INTO messages (name, message) VALUES (?, ?)",
             (name, message)
@@ -33,8 +37,10 @@ def add_message(name, message):
 
 
 # READ - Retrieve all messages
-def get_messages():
-    with sqlite3.connect(DB_PATH) as conn:
+def get_messages(db_path=None):
+    path = db_path or DB_PATH
+
+    with sqlite3.connect(path) as conn:
         conn.row_factory = sqlite3.Row
         rows = conn.execute(
             "SELECT * FROM messages ORDER BY id"
@@ -43,8 +49,10 @@ def get_messages():
 
 
 # UPDATE - Modify a message
-def update_message(message_id, new_message):
-    with sqlite3.connect(DB_PATH) as conn:
+def update_message(message_id, new_message, db_path=None):
+    path = db_path or DB_PATH
+
+    with sqlite3.connect(path) as conn:
         cursor = conn.execute(
             "UPDATE messages SET message = ? WHERE id = ?",
             (new_message, message_id)
@@ -53,8 +61,10 @@ def update_message(message_id, new_message):
 
 
 # DELETE - Remove a message
-def delete_message(message_id):
-    with sqlite3.connect(DB_PATH) as conn:
+def delete_message(message_id, db_path=None):
+    path = db_path or DB_PATH
+
+    with sqlite3.connect(path) as conn:
         cursor = conn.execute(
             "DELETE FROM messages WHERE id = ?",
             (message_id,)
